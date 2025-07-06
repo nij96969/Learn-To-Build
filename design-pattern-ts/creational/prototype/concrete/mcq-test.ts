@@ -1,9 +1,9 @@
 import { ITestPrototype } from "../interfaces/test-prototype";
 
 export class MCQTest implements ITestPrototype {
-    private title: string;
-    private question: string[];
-    private duration: number;
+    private title: string; // primitive
+    private duration: number; // primitive
+    private question: string[]; // component
 
     constructor(title: string, question: string[], duration: number) {
         this.title = title;
@@ -14,7 +14,7 @@ export class MCQTest implements ITestPrototype {
     clone(): MCQTest {
         return new MCQTest(
             this.title, 
-            this.question.map(question => question), 
+            [...this.question],
             this.duration
         );
     }
