@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "factory": "ts-node creational/factory/notification-factory.ts",
-    "abstract-factory": "ts-node creational/abstract-factory/abstract-factory-notification-service.ts"
+    "abstract-factory": "ts-node creational/abstract-factory/abstract-factory-notification-service.ts",
+    "prototype": "ts-node creational/prototype/test-prototype.ts"
   },
   "keywords": [],
   "author": "",
