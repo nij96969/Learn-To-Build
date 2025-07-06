@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "factory": "ts-node creational/factory/notification-factory.ts"
+    "factory": "ts-node creational/factory/notification-factory.ts",
+    "abstract-factory": "ts-node creational/abstract-factory/abstract-factory-notification-service.ts"
   },
   "keywords": [],
   "author": "",
