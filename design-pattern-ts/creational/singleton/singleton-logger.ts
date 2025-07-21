@@ -1,4 +1,4 @@
-import { LoggerSingleton } from "./LoggerSingleton";
+import { LoggerSingleton } from "./logger-singleton";
 
 // Lazy initialization - no need to call initialize() explicitly
 const authentication_logger = LoggerSingleton.getInstance();

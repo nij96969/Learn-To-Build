@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "singleton": "ts-node creational/singleton/singletonLogger.ts",
+    "singleton": "ts-node creational/singleton/singleton-logger.ts",
     "factory": "ts-node creational/factory/notification-factory.ts",
     "abstract-factory": "ts-node creational/abstract-factory/abstract-factory-notification-service.ts",
     "prototype": "ts-node creational/prototype/test-prototype.ts",

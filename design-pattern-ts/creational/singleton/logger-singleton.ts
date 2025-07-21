@@ -1,7 +1,8 @@
-import { Logger } from "./Logger";
+import { ILogger } from "./interfaces/Logger";
+import { IConfig } from "./interfaces/config";
 import fs from "fs";
 
-export class LoggerSingleton implements Logger {
+export class LoggerSingleton implements ILogger {
     private static logger_instance: LoggerSingleton;
     private file_path: string = '';
     private write_to_file: boolean = false;
@@ -10,7 +11,7 @@ export class LoggerSingleton implements Logger {
 
     private writeToFile(message: string): void {
         if (this.write_to_file && this.file_path) {
-            fs.appendFileSync(this.file_path, message + "\n");
+            fs.promises.appendFile(this.file_path, message + "\n");
         }
     }
 
@@ -48,39 +49,28 @@ export class LoggerSingleton implements Logger {
     }
 
     /**
-     * Initialize the logger singleton instance with optional file writing capability
-     * @param write_to_file Whether to write logs to a file (default: false)
-     * @param file_path Path to the log file (required if write_to_file is true)
-     */
-    public static initialize(write_to_file: boolean = false, file_path?: string): void {
-        // Create instance if it doesn't exist
-        if (!LoggerSingleton.logger_instance) {
-            LoggerSingleton.logger_instance = new LoggerSingleton();
-        }
-
-        // Configure file writing
-        LoggerSingleton.logger_instance.write_to_file = write_to_file;
-        
-        // Validate file path if writing to file
-        if (write_to_file) {
-            if (!file_path) {
-                throw new Error("file_path must be provided when write_to_file is true");
-            }
-            LoggerSingleton.logger_instance.file_path = file_path;
-        }
-    }
-
-    /**
      * Get the singleton instance with lazy initialization
      * @param write_to_file Whether to write logs to a file (default: false, only used on first call)
      * @param file_path Path to the log file (only used on first call if write_to_file is true)
      */
-    public static getInstance(write_to_file: boolean = false, file_path?: string): LoggerSingleton {
+    public static getInstance(config?: IConfig): LoggerSingleton {
         if (!LoggerSingleton.logger_instance) {
-            LoggerSingleton.initialize(write_to_file, file_path);
+            const instance = new LoggerSingleton();
+    
+            if (config?.write_to_file) {
+                if (!config.file_path) {
+                    throw new Error("file_path must be provided when write_to_file is true");
+                }
+                instance.write_to_file = true;
+                instance.file_path = config.file_path;
+            }
+    
+            LoggerSingleton.logger_instance = instance;
         }
-        return LoggerSingleton.logger_instance!;
+    
+        return LoggerSingleton.logger_instance;
     }
+    
 
     public log(message: string): void {
         this.logWithLevel('log', message);
