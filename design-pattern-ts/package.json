@@ -8,7 +8,8 @@
     "factory": "ts-node creational/factory/notification-factory.ts",
     "abstract-factory": "ts-node creational/abstract-factory/abstract-factory-notification-service.ts",
     "prototype": "ts-node creational/prototype/test-prototype.ts",
-    "builder": "ts-node creational/builder/builder-main.ts"
+    "builder": "ts-node creational/builder/builder-main.ts",
+    "adapter": "ts-node structural/adapter/payment-main.ts"
   },
   "keywords": [],
   "author": "",
