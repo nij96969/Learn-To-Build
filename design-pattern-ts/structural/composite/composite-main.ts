@@ -1,4 +1,4 @@
-import { Folder, File } from "./storage";
+import { Folder, File } from "./file-system-composite";
 
 
 let folder1 = new Folder("Folder 1");
