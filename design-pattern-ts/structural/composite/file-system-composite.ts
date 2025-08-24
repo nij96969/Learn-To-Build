@@ -51,18 +51,4 @@ export class File implements IStorage {
     display(): void {
         console.log(`File: ${this.name} - ${this.text}`);
     }
-
-    // Leaf nodes don't support add/remove operations
-    // These methods throw errors to indicate inappropriate usage
-    add?(child: IStorage): void {
-        throw new Error("Cannot add child to a leaf node (File)");
-    }
-
-    remove?(child: IStorage): void {
-        throw new Error("Cannot remove child from a leaf node (File)");
-    }
-
-    getChild?(index: number): IStorage | null {
-        throw new Error("Cannot get child from a leaf node (File)");
-    }
 }
