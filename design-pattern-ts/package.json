@@ -10,7 +10,8 @@
     "prototype": "ts-node creational/prototype/test-prototype.ts",
     "builder": "ts-node creational/builder/builder-main.ts",
     "adapter": "ts-node structural/adapter/payment-main.ts",
-    "composite": "ts-node structural/composite/composite-main.ts"
+    "composite": "ts-node structural/composite/composite-main.ts",
+    "proxy": "ts-node structural/proxy/proxy-main.ts"
   },
   "keywords": [],
   "author": "",
