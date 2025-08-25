@@ -11,7 +11,8 @@
     "builder": "ts-node creational/builder/builder-main.ts",
     "adapter": "ts-node structural/adapter/payment-main.ts",
     "composite": "ts-node structural/composite/composite-main.ts",
-    "proxy": "ts-node structural/proxy/proxy-main.ts"
+    "proxy": "ts-node structural/proxy/proxy-main.ts",
+    "flyweight": "ts-node structural/flyweight/flyweight-main.ts"
   },
   "keywords": [],
   "author": "",
