@@ -1,3 +1,3 @@
 export interface IPaymentAdapter {
-  pay(amount: number): void;
+  pay(amount: number, currency: string): void;
 }

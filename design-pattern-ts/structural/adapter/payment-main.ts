@@ -4,18 +4,18 @@ import { BharatPay, GooglePay, PaytmPay, RazorPay } from "./payment/payment-api"
 const bharatPay = new BharatPay()
 const bharatPayAdapter = new BharatPayAdapter(bharatPay)
 
-bharatPayAdapter.pay(100)
+bharatPayAdapter.pay(100, 'INR')
 
 const razorPay = new RazorPay()
 const razorPayAdapter = new RazorPayAdapter(razorPay)
 
-razorPayAdapter.pay(200)
+razorPayAdapter.pay(200, 'INR')
 
 const paytmPay = new PaytmPay()
 const paytmPayAdapter = new PaytmPayAdapter(paytmPay)
-paytmPayAdapter.pay(300)
+paytmPayAdapter.pay(300, 'INR')
 
 const googlePay = new GooglePay()
 const googlePayAdapter = new GooglePayAdapter(googlePay)
 
-googlePayAdapter.pay(400)
+googlePayAdapter.pay(400, 'INR')

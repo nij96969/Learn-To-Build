@@ -1,23 +1,23 @@
 export class BharatPay {
-    payWithBharatPay(amount: number) {
-        console.log(`BharatPay: ${amount}`)
+    payWithBharatPay(amount: number, currency: string) {
+        console.log(`BharatPay: ${amount} ${currency}`)
     }
 }
 
 export class RazorPay {
-    payWithRazorPay(amount: number) {
-        console.log(`RazorPay: ${amount}`)
+    payWithRazorPay(amount: number, currency: string) {
+        console.log(`RazorPay: ${amount} ${currency}`)
     }
 }
 
 export class PaytmPay {
-    payWithPaytmPay(amount: number) {
-        console.log(`PaytmPay: ${amount}`)
+    payWithPaytmPay(amount: number, currency: string) {
+        console.log(`PaytmPay: ${amount} ${currency}`)
     }
 }
 
 export class GooglePay {
-    payWithGooglePay(amount: number) {
-        console.log(`GooglePay: ${amount}`)
+    payWithGooglePay(amount: number, currency: string) {
+        console.log(`GooglePay: ${amount} ${currency}`)
     }
 }

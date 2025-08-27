@@ -6,8 +6,8 @@ export class BharatPayAdapter implements IPaymentAdapter {
     constructor(private bharatPay: BharatPay) {
     }
 
-    pay(amount: number) {
-        this.bharatPay.payWithBharatPay(amount)
+    pay(amount: number, currency: string) {
+        this.bharatPay.payWithBharatPay(amount, currency)
     }
 }
 
@@ -16,8 +16,8 @@ export class RazorPayAdapter implements IPaymentAdapter {
     constructor(private razorPay: RazorPay) {
     }
 
-    pay(amount: number) {
-        this.razorPay.payWithRazorPay(amount)
+    pay(amount: number, currency: string) {
+        this.razorPay.payWithRazorPay(amount, currency)
     }
 }
 
@@ -26,8 +26,8 @@ export class PaytmPayAdapter implements IPaymentAdapter {
     constructor(private paytmPay: PaytmPay) {
     }
 
-    pay(amount: number) {
-        this.paytmPay.payWithPaytmPay(amount)
+    pay(amount: number, currency: string) {
+        this.paytmPay.payWithPaytmPay(amount, currency)
     }
 }
 
@@ -36,7 +36,7 @@ export class GooglePayAdapter implements IPaymentAdapter {
     constructor(private googlePay: GooglePay) {
     }
 
-    pay(amount: number) {
-        this.googlePay.payWithGooglePay(amount)
+    pay(amount: number, currency: string) {
+        this.googlePay.payWithGooglePay(amount, currency)
     }
 }
