@@ -15,7 +15,8 @@
     "flyweight": "ts-node structural/flyweight/flyweight-main.ts",
     "facade": "ts-node structural/facade/facade-main.ts",
     "bridge": "ts-node structural/bridge/bridge-main.ts",
-    "decorator": "ts-node structural/decorator/decorator-main.ts"
+    "decorator": "ts-node structural/decorator/decorator-main.ts",
+    "observer": "ts-node behavioural/observer/observer-main.ts"
   },
   "keywords": [],
   "author": "",
