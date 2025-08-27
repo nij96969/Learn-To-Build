@@ -12,7 +12,8 @@
     "adapter": "ts-node structural/adapter/payment-main.ts",
     "composite": "ts-node structural/composite/composite-main.ts",
     "proxy": "ts-node structural/proxy/proxy-main.ts",
-    "flyweight": "ts-node structural/flyweight/flyweight-main.ts"
+    "flyweight": "ts-node structural/flyweight/flyweight-main.ts",
+    "facade": "ts-node structural/facade/facade-main.ts"
   },
   "keywords": [],
   "author": "",
