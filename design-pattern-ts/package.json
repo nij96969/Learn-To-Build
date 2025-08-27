@@ -18,7 +18,8 @@
     "decorator": "ts-node structural/decorator/decorator-main.ts",
     "observer": "ts-node behavioural/observer/observer-main.ts",
     "chain-of-responsibility": "ts-node behavioural/chain-of-responsibility/chain-of-responsibility-main.ts",
-    "state": "ts-node behavioural/state/state-main.ts"
+    "state": "ts-node behavioural/state/state-main.ts",
+    "mediator": "ts-node behavioural/mediator/mediator-main.ts"
   },
   "keywords": [],
   "author": "",
