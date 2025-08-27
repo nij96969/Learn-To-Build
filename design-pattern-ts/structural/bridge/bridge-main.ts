@@ -3,6 +3,7 @@ import { GoogleOAuthGateway } from "./implementation/google-oauth-gateway";
 import { JWTGateway } from "./implementation/jwt-gateway";
 import { WebAppAuth } from "./abstraction/web-app-auth";
 import { MobileAppAuth } from "./abstraction/mobile-app-auth";
+import { handleError } from "../../utils/handleError";
 
 async function main() {
   console.log("🔗 Bridge Pattern - Authentication System Demo\n");
@@ -32,4 +33,4 @@ async function main() {
 }
 
 // Execute the demo
-main().catch(console.error);
+main().catch((error) => handleError(error, "bridge-main"));
