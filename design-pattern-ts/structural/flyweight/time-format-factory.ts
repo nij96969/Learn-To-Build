@@ -14,22 +14,11 @@ export class TimeFormatFactory {
         const key = `${timeZone}-${locale}-${JSON.stringify(format)}`;
         
         if (!this.flyweights.has(key)) {
-            console.log(`Creating new flyweight for: ${key}`);
+            // Create a new flyweight if it doesn't exist
             this.flyweights.set(key, new TimeFormatFlyweight(timeZone, locale, format));
-        } else {
-            console.log(`Reusing existing flyweight for: ${key}`);
         }
         
+        // Return the flyweight for the given key
         return this.flyweights.get(key)!;
-    }
-
-    // Helper method to see how many flyweights are created
-    public static getCreatedFlyweightsCount(): number {
-        return this.flyweights.size;
-    }
-
-    // Method to get all created flyweight keys (for debugging)
-    public static getCreatedFlyweightKeys(): string[] {
-        return Array.from(this.flyweights.keys());
     }
 }
