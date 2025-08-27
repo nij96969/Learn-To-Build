@@ -13,7 +13,8 @@
     "composite": "ts-node structural/composite/composite-main.ts",
     "proxy": "ts-node structural/proxy/proxy-main.ts",
     "flyweight": "ts-node structural/flyweight/flyweight-main.ts",
-    "facade": "ts-node structural/facade/facade-main.ts"
+    "facade": "ts-node structural/facade/facade-main.ts",
+    "bridge": "ts-node structural/bridge/bridge-main.ts"
   },
   "keywords": [],
   "author": "",
