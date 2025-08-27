@@ -1,5 +1,4 @@
 import { PaymentFacade } from "./payment-facade";
-import { PaymentRequest } from "./interfaces/payment-facade-interface";
 import { PaymentProvider } from "./constants/payment-constants";
 import { handleError } from "../../utils/handleError";
 
@@ -57,10 +56,6 @@ function facadeMain() {
             const status = available ? '✅' : '❌';
             console.log(`   ${status} ${provider}: ${available ? 'Available' : 'Not Available'}`);
         });
-
-        console.log('\n   📊 Payment Statistics:');
-        const stats = paymentFacade.getPaymentStats();
-        console.log('  ', JSON.stringify(stats, null, 2));
 
         console.log("\n=== Facade Pattern Benefits ===");
         console.log('✅ Simplified Interface: Complex payment system → Simple API');

@@ -3,6 +3,7 @@ import { PaymentProvider } from "./constants/payment-constants";
 
 // Import existing adapter pattern classes
 import { BharatPayAdapter, RazorPayAdapter, PaytmPayAdapter, GooglePayAdapter } from "../adapter/payment-adapter";
+import { IPaymentAdapter } from "../adapter/interfaces/paymet-adapter";
 import { BharatPay, GooglePay, PaytmPay, RazorPay } from "../adapter/payment/payment-api";
 
 // Import error handling utility
@@ -14,7 +15,7 @@ import { handleError } from "../../utils/handleError";
  * Provider is compulsory - no automatic fallback or provider switching
  */
 export class PaymentFacade implements IPaymentFacade {
-    private adapters: Map<PaymentProvider, any>;
+    private adapters: Map<PaymentProvider, IPaymentAdapter>;
 
     constructor() {
         this.adapters = new Map();
@@ -56,7 +57,7 @@ export class PaymentFacade implements IPaymentFacade {
      * Process payment using the specified provider (provider is compulsory)
      * No automatic fallback - if provider fails, the payment fails
      */
-    async processPayment(provider: PaymentProvider, amount: number, currency: string = 'INR'): Promise<boolean> {
+    async processPayment(provider: PaymentProvider, amount: number, currency: string): Promise<boolean> {
         try {
             console.log(`🚀 Payment Facade: Processing payment of ${amount} ${currency} with ${provider}`);
 
@@ -65,9 +66,11 @@ export class PaymentFacade implements IPaymentFacade {
             }
 
             const adapter = this.adapters.get(provider);
+            if (!adapter) {
+                throw handleError(new Error(`Adapter for ${provider} is not available`), `PaymentFacade.processPayment[${provider}]`);
+            }
             
-            
-            adapter.pay(amount);
+            adapter.pay(amount, currency);
             
             console.log(`✅ Payment Facade: Payment successful with ${provider}`);
             return true;
@@ -122,9 +125,8 @@ export class PaymentFacade implements IPaymentFacade {
                     results.push({
                         success,
                         provider: payment.provider,
-                        transactionId: this.generateTransactionId(),
                         amount: payment.amount,
-                        currency: payment.currency || 'INR',
+                        currency: payment.currency,
                         timestamp: startTime
                     });
                 } catch (error) {
@@ -134,7 +136,7 @@ export class PaymentFacade implements IPaymentFacade {
                         success: false,
                         provider: payment.provider,
                         amount: payment.amount,
-                        currency: payment.currency || 'INR',
+                        currency: payment.currency,
                         error: errorMessage,
                         timestamp: startTime
                     });
@@ -147,36 +149,6 @@ export class PaymentFacade implements IPaymentFacade {
             return results;
         } catch (error) {
             throw handleError(error, "PaymentFacade.processBulkPayments");
-        }
-    }
-
-    /**
-     * Generate a unique transaction ID
-     */
-    private generateTransactionId(): string {
-        try {
-            return `TXN_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-        } catch (error) {
-            throw handleError(error, "PaymentFacade.generateTransactionId");
-        }
-    }
-
-    /**
-     * Get payment statistics
-     */
-    getPaymentStats(): { [key in PaymentProvider]?: { available: boolean } } {
-        try {
-            const stats: { [key in PaymentProvider]?: { available: boolean } } = {};
-            
-            Object.values(PaymentProvider).forEach(provider => {
-                stats[provider] = {
-                    available: this.isProviderAvailable(provider)
-                };
-            });
-
-            return stats;
-        } catch (error) {
-            throw handleError(error, "PaymentFacade.getPaymentStats");
         }
     }
 }

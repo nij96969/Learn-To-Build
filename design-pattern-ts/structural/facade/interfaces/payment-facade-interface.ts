@@ -32,7 +32,7 @@ export interface IPaymentFacade {
 
 export interface PaymentRequest {
     amount: number;
-    currency?: string;
+    currency: string;
     provider: PaymentProvider; // Made compulsory
     metadata?: Record<string, any>;
 }
@@ -40,7 +40,7 @@ export interface PaymentRequest {
 export interface PaymentResult {
     success: boolean;
     provider: PaymentProvider;
-    transactionId?: string;
+    transaction_id?: string;
     amount: number;
     currency: string;
     error?: string;
