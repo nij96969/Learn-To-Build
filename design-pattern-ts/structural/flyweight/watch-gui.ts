@@ -10,21 +10,13 @@ export class WatchContext {
     private position: { x: number; y: number };
 
     constructor(x: number = 0, y: number = 0) {
-        try{
-            this.currentTime = new Date();
-            this.position = { x, y };
-        }catch(error){
-            throw handleError(error);
-        }
+        this.currentTime = new Date();
+        this.position = { x, y };
     }
 
     // Update extrinsic state
     updateTime(): void {
-        try{
-            this.currentTime = new Date();
-        }catch(error){
-            throw handleError(error);
-        }
+        this.currentTime = new Date();
     }
 
     getCurrentTime(): Date {
@@ -59,13 +51,13 @@ export class WatchStyle1 implements IWatchWidget {
     }
   
     render(): void {
-        try{    
-        this.context.updateTime(); // Update extrinsic state
-        const formattedTime = this.timeFlyweight.formatTime(this.context.getCurrentTime());
+        try {
+            this.context.updateTime(); // Update extrinsic state
+            const formattedTime = this.timeFlyweight.formatTime(this.context.getCurrentTime());
             const pos = this.context.getPosition();
             console.log(`[Watch@(${pos.x},${pos.y})] Style1: ${formattedTime}`);
-        }catch(error){
-            throw handleError(error);
+        } catch (error) {
+            throw handleError(error, "WatchStyle1.render");
         }
     }
 }
@@ -92,10 +84,14 @@ export class WatchStyle2 implements IWatchWidget {
     }
   
     render(): void {
-        this.context.updateTime();
-        const formattedTime = this.timeFlyweight.formatTime(this.context.getCurrentTime());
-        const pos = this.context.getPosition();
-        console.log(`[Watch@(${pos.x},${pos.y})] Style2: ${formattedTime}`);
+        try {
+            this.context.updateTime();
+            const formattedTime = this.timeFlyweight.formatTime(this.context.getCurrentTime());
+            const pos = this.context.getPosition();
+            console.log(`[Watch@(${pos.x},${pos.y})] Style2: ${formattedTime}`);
+        } catch (error) {
+            throw handleError(error, "WatchStyle2.render");
+        }
     }
 }
   
@@ -119,9 +115,13 @@ export class WatchStyle3 implements IWatchWidget {
     }
   
     render(): void {
-        this.context.updateTime();
-        const formattedTime = this.timeFlyweight.formatTime(this.context.getCurrentTime());
-        const pos = this.context.getPosition();
-        console.log(`[Watch@(${pos.x},${pos.y})] Style3: ${formattedTime}`);
+        try {
+            this.context.updateTime();
+            const formattedTime = this.timeFlyweight.formatTime(this.context.getCurrentTime());
+            const pos = this.context.getPosition();
+            console.log(`[Watch@(${pos.x},${pos.y})] Style3: ${formattedTime}`);
+        } catch (error) {
+            throw handleError(error, "WatchStyle3.render");
+        }
     }
 }

@@ -23,7 +23,7 @@ export class TimeFormatFactory {
 
       return this.flyweights.get(key)!;
     } catch (err) {
-      throw handleError(err);
+      throw handleError(err, "TimeFormatFactory.getTimeFormat");
     }
   }
 }

@@ -41,8 +41,8 @@ function flyweightMain() {
         anotherWatch2.render();
         
         console.log("(Notice: same count as before - flyweights were reused!)");
-    }catch(error){
-        throw handleError(error);
+    } catch (error) {
+        throw handleError(error, "flyweightMain");
     }
 }
 

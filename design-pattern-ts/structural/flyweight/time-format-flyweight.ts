@@ -15,15 +15,14 @@ export class TimeFormatFlyweight implements ITimeFlyweight {
 
     // Operation that uses both intrinsic state (this object) and extrinsic state (currentTime)
     formatTime(currentTime: Date): string {
-        try{
+        try {
             return currentTime.toLocaleString(this.locale, {
                 ...this.format,
                 timeZone: this.time_zone
             });
-        }catch(error){
-            throw handleError(error);
+        } catch (error) {
+            throw handleError(error, "TimeFormatFlyweight.formatTime");
         }
-        
     }
 
     getTimeZone(): string {
