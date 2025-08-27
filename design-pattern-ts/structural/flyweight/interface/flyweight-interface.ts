@@ -1,6 +1,6 @@
+// Intrinsic state: Time formatting rules (shared across similar watches)
 export interface ITimeFlyweight {
-    getFormattedTime(): string;
-    getYear(): number;
-    getMonth(): string;
-    getDay(): string;
+    formatTime(currentTime: Date): string;
+    getTimeZone(): string;
+    getLocale(): string;
 }
