@@ -1,5 +1,7 @@
 # Facade Pattern Implementation
 
+The Facade pattern is used when we have a complex subsystems that works individually. It's main aim is to simply the interface for the client making the system easier to use without going deep in how the actual overall system works internally
+
 ## Overview
 This implementation demonstrates the **Facade Pattern** using the existing **Adapter Pattern** for payment processing. The facade provides a simplified interface to multiple payment providers while maintaining strict provider control.
 
