@@ -1,4 +1,5 @@
 import { WatchStyle1, WatchStyle2, WatchStyle3, WatchContext } from "./watch-gui";
+import { handleError } from "../../utils/handleError";
 
 function flyweightMain() {
     try{
@@ -41,7 +42,7 @@ function flyweightMain() {
         
         console.log("(Notice: same count as before - flyweights were reused!)");
     }catch(error){
-        throw new Error(error as string);
+        throw handleError(error);
     }
 }
 

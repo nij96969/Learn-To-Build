@@ -1,24 +1,29 @@
 import { ITimeFlyweight } from "./interface/flyweight-interface";
 import { TimeFormatFlyweight } from "./time-format-flyweight";
+import { handleError } from "../../utils/handleError";
 
-// Flyweight Factory - ensures flyweights are shared properly
 export class TimeFormatFactory {
-    private static flyweights: Map<string, ITimeFlyweight> = new Map();
+  private static flyweights: Map<string, ITimeFlyweight> = new Map();
 
-    // Factory method to get or create flyweight based on intrinsic state
-    public static getTimeFormat(
-        timeZone: string, 
-        locale: string, 
-        format: Intl.DateTimeFormatOptions
-    ): ITimeFlyweight {
-        const key = `${timeZone}-${locale}-${JSON.stringify(format)}`;
-        
-        if (!this.flyweights.has(key)) {
-            // Create a new flyweight if it doesn't exist
-            this.flyweights.set(key, new TimeFormatFlyweight(timeZone, locale, format));
-        }
-        
-        // Return the flyweight for the given key
-        return this.flyweights.get(key)!;
+  public static getTimeFormat(
+    time_zone: string, 
+    locale: string, 
+    format: Intl.DateTimeFormatOptions
+  ): ITimeFlyweight {
+    try {
+      if (!time_zone || !locale) {
+        throw new Error("Invalid timeZone or locale provided");
+      }
+
+      const key = `${time_zone}-${locale}-${JSON.stringify(format)}`;
+
+      if (!this.flyweights.has(key)) {
+        this.flyweights.set(key, new TimeFormatFlyweight(time_zone, locale, format));
+      }
+
+      return this.flyweights.get(key)!;
+    } catch (err) {
+      throw handleError(err);
     }
+  }
 }

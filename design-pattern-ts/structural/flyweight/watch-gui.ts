@@ -2,6 +2,7 @@
 import { ITimeFlyweight } from "./interface/flyweight-interface";
 import { IWatchWidget } from "./interface/watch-interface";
 import { TimeFormatFactory } from "./time-format-factory";
+import { handleError } from "../../utils/handleError";
 
 // Context class - stores extrinsic state (current time, position, etc.)
 export class WatchContext {
@@ -9,13 +10,21 @@ export class WatchContext {
     private position: { x: number; y: number };
 
     constructor(x: number = 0, y: number = 0) {
-        this.currentTime = new Date();
-        this.position = { x, y };
+        try{
+            this.currentTime = new Date();
+            this.position = { x, y };
+        }catch(error){
+            throw handleError(error);
+        }
     }
 
     // Update extrinsic state
     updateTime(): void {
-        this.currentTime = new Date();
+        try{
+            this.currentTime = new Date();
+        }catch(error){
+            throw handleError(error);
+        }
     }
 
     getCurrentTime(): Date {
@@ -50,10 +59,14 @@ export class WatchStyle1 implements IWatchWidget {
     }
   
     render(): void {
+        try{    
         this.context.updateTime(); // Update extrinsic state
         const formattedTime = this.timeFlyweight.formatTime(this.context.getCurrentTime());
-        const pos = this.context.getPosition();
-        console.log(`[Watch@(${pos.x},${pos.y})] Style1: ${formattedTime}`);
+            const pos = this.context.getPosition();
+            console.log(`[Watch@(${pos.x},${pos.y})] Style1: ${formattedTime}`);
+        }catch(error){
+            throw handleError(error);
+        }
     }
 }
   
