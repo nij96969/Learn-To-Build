@@ -130,14 +130,12 @@ export class PaymentFacade implements IPaymentFacade {
                         timestamp: startTime
                     });
                 } catch (error) {
-                    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
                     
                     results.push({
                         success: false,
                         provider: payment.provider,
                         amount: payment.amount,
                         currency: payment.currency,
-                        error: errorMessage,
                         timestamp: startTime
                     });
                 }
