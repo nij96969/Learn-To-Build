@@ -1,6 +1,6 @@
 # 🎭 Decorator Pattern for API Calls
 
-> **Real-world implementation mimicking SDKs, API gateways, and middleware architectures**
+> **Real-world implementation -> SDKs, API gateways, and middleware architectures**
 
 ## 📚 Table of Contents
 

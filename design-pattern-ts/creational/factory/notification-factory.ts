@@ -2,7 +2,6 @@ import { EmailCreator } from "./creators/email-creator";
 import { SMSCreator } from "./creators/sms-creator";
 import { WhatsappCreator } from "./creators/whatsapp-creator";
 import { IEmailUser, ISMSUser, IWhatsappUser } from "./interfaces/user.model";
-import { ISendEmail, ISendSMS, ISendWhatsapp } from "./interfaces/details.model";
 
 const email_user: IEmailUser = {
     email: 'nij.akbari@ei.study',

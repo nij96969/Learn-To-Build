@@ -1,7 +1,3 @@
-You're on the right track! Here's a **refined and professional version** of your README explanation, keeping it concise, clear, and technically sound:
-
----
-
 ## 🧩 Adapter Pattern – Payment Gateway Example
 
 This implementation demonstrates the **Adapter Pattern**, which is particularly useful when integrating **multiple external systems** with **incompatible interfaces**.

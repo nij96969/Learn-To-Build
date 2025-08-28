@@ -1,4 +1,4 @@
-import { ILogger } from "./interfaces/Logger";
+import { ILogger } from "./interfaces/logger";
 import { IConfig } from "./interfaces/config";
 import fs from "fs";
 
