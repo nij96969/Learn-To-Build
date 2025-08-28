@@ -1,15 +1,34 @@
-// main.ts (entry point)
-import { OrchestrationService } from "./orchestrationService";
+import { RideMediator } from "./ride-mediator";
+import { Passenger } from "./colleagues/passenger";
+import { Driver } from "./colleagues/driver";
 
-async function main() {
-  const orchestrator = new OrchestrationService();
+// -------------------------
+// Usage Example
+// -------------------------
+const mediator = new RideMediator();
 
-  const result = await orchestrator.createUserAndAssignGroup(
-    { name: "Alice", email: "alice@example.com" },
-    "admins"
-  );
+const passenger1 = new Passenger("p1", "Alice", mediator);
+const passenger2 = new Passenger("p2", "Bob", mediator);
 
-  console.log("Final Result:", result);
-}
+const driver1 = new Driver("d1", "John", mediator);
+const driver2 = new Driver("d2", "Mike", mediator);
 
-main();
+mediator.registerPassenger(passenger1);
+mediator.registerPassenger(passenger2);
+
+mediator.registerDriver(driver1);
+mediator.registerDriver(driver2);
+
+passenger1.requestRide();  // Alice matched with John
+passenger2.requestRide();  // Bob matched with Mike
+
+// Try to request rides again before completing - should be blocked
+passenger1.requestRide();  // Alice tries again (should be blocked)
+passenger2.requestRide();  // Bob tries again (should be blocked)
+
+driver1.completeRide();    // Ride completed for Alice
+driver2.completeRide();    // Ride completed for Bob with Mike
+
+// Now they can request new rides
+passenger2.requestRide();  // Bob can request againß
+passenger1.requestRide();  // Alice can request again

@@ -7,82 +7,103 @@ The **Mediator Pattern** defines how a set of objects interact with each other. 
 
 ```
 ┌─────────────────────┐    ┌──────────────────────┐
-│ UserManagementService│    │   UserGroupService   │
+│     Passenger       │    │       Driver         │
+│   (Colleague)       │    │    (Colleague)       │
 └─────────────────────┘    └──────────────────────┘
            │                           │
            └─────────┐         ┌───────┘
                      │         │
                      ▼         ▼
               ┌─────────────────────┐
-              │ OrchestrationService│
+              │   RideMediator      │
               │    (Mediator)       │
               └─────────────────────┘
 ```
 
 ## Implementation
 
-### Services
-- **UserManagementService**: Handles user creation operations
-- **UserGroupService**: Manages user-to-group assignments
+### Core Components
+- **Mediator Interface**: Defines the contract for mediator communication
+- **RideMediator**: Concrete mediator that coordinates ride-sharing operations
+- **Passenger**: Colleague class that requests rides through the mediator
+- **Driver**: Colleague class that accepts rides through the mediator
 
-### Mediator
-- **OrchestrationService**: Coordinates the workflow between services without them knowing about each other
+## Key Mediator Pattern Features
+
+1. **Bidirectional Communication**: Both passengers and drivers communicate through the mediator
+2. **Colleague References**: Both Passenger and Driver hold references to the mediator
+3. **Decoupled Components**: Passengers and drivers don't know about each other directly
+4. **Centralized Logic**: All ride-matching logic is handled by the mediator
 
 ## Files Structure
 
 ```
 mediator/
-├── services/
-│   ├── userManagementService.ts   # User creation service
-│   └── userGroupService.ts        # Group assignment service
-├── orchestrationService.ts        # Mediator implementation
-└── mediator-main.ts              # Entry point demonstration
+├── interfaces/
+│   └── mediator.ts               # Mediator interface definition
+├── colleagues/
+│   ├── passenger.ts              # Passenger colleague class
+│   └── driver.ts                 # Driver colleague class
+├── ride-mediator.ts              # Concrete mediator implementation
+├── mediator-main.ts              # Usage example and demonstration
+└── README.md                     # This documentation
 ```
 
 ## How It Works
 
-1. **Loose Coupling**: Services don't directly communicate with each other
-2. **Centralized Control**: The mediator handles all inter-service communication
-3. **Workflow Orchestration**: Complex business processes are managed in one place
-4. **Reusability**: Services can be reused in different workflows through different mediators
+1. **Registration**: Passengers and drivers register with the mediator
+2. **Request**: Passengers request rides through the mediator
+3. **Matching**: Mediator finds available drivers and matches them with passengers
+4. **Completion**: Drivers complete rides and notify the mediator to update availability
 
 ## Example Usage
 
 ```typescript
-const orchestrator = new OrchestrationService();
+import { RideMediator } from "./ride-mediator";
+import { Passenger } from "./colleagues/passenger";
+import { Driver } from "./colleagues/driver";
 
-const result = await orchestrator.createUserAndAssignGroup(
-  { name: "Alice", email: "alice@example.com" },
-  "admins"
-);
+// Create mediator and register participants
+const mediator = new RideMediator();
 
-console.log("Final Result:", result);
+const passenger1 = new Passenger("p1", "Alice", mediator);
+const driver1 = new Driver("d1", "John", mediator);
+
+mediator.registerPassenger(passenger1);
+mediator.registerDriver(driver1);
+
+// Request and complete rides
+passenger1.requestRide();  // Alice matched with John
+driver1.completeRide();    // Ride completed, John becomes available again
 ```
 
 ## Benefits
 
-1. **Reduced Dependencies**: Services don't need to know about each other
-2. **Easier Maintenance**: Changes to workflow logic are centralized
-3. **Reusable Components**: Services can be used in different contexts
-4. **Single Responsibility**: Each service focuses on its specific task
+1. **Loose Coupling**: Components don't need direct references to each other
+2. **Centralized Control**: Complex interaction logic is managed in one place
+3. **Reusability**: Components can be reused with different mediators
+4. **Maintainability**: Changes to interaction logic only affect the mediator
 
 ## When to Use
 
 - When you have multiple objects that need to communicate in complex ways
 - When you want to avoid tight coupling between communicating objects
-- When you need to centralize complex communications and control logic
-- When you want to reuse object behavior in different contexts
+- When communication logic is complex and changes frequently
+- When you need to centralize control flow between multiple components
 
 ## Console Output Example
 
 ```
-🚦 Starting orchestration workflow...
-➡️ Creating user in User Management Service: { name: "Alice", email: "alice@example.com" }
-➡️ Assigning user u123 to group admins
-✅ Workflow complete.
-Final Result: {
-  user: { userId: "u123", name: "Alice", email: "alice@example.com" },
-  groupAssignment: { userId: "u123", groupId: "admins", status: "assigned" },
-  message: "User created and assigned to group successfully"
-}
+Passenger Alice registered.
+Passenger Bob registered.
+Driver John registered.
+Driver Mike registered.
+Ride confirmed: Passenger Alice with Driver John
+Ride confirmed: Passenger Bob with Driver Mike
+Ride completed: Passenger Alice with Driver John
+No available drivers for passenger Bob
 ```
+
+## Error Handling
+
+The implementation includes comprehensive error handling using the `handleError` utility function, which provides context-aware error messages for debugging and monitoring purposes.
