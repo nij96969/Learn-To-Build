@@ -74,12 +74,11 @@ class ProxyDocument implements IDocument {
 4. **Testability**: Each component can be tested independently
 5. **Flexibility**: Easy to swap different permission strategies
 
-## Usage Examples
+## Usage Example
 
-### Basic Usage
 ```typescript
 // Create real document
-const document = new RealDocument("confidential.pdf");
+const document = new RealDocument("secret-document.txt");
 
 // Create permission manager
 const permManager = new PermissionManager(document.name);
@@ -90,39 +89,11 @@ permManager.addWriteUser("admin");
 const proxy = new ProxyDocument(document, permManager);
 
 // Access through proxy (permission checked)
-proxy.read("alice");    // ✓ Allowed
-proxy.write("alice");   // ✗ Denied
-proxy.write("admin");   // ✓ Allowed
-```
-
-### Shared Permission Manager
-```typescript
-// One permission manager for multiple documents
-const sharedManager = new PermissionManager("ProjectDocs");
-sharedManager.addReadUser("team_member");
-sharedManager.addWriteUser("project_lead");
-
-const doc1Proxy = new ProxyDocument(new RealDocument("spec.md"), sharedManager);
-const doc2Proxy = new ProxyDocument(new RealDocument("plan.md"), sharedManager);
-
-// Both documents use same permissions
-doc1Proxy.read("team_member");  // ✓ Allowed
-doc2Proxy.read("team_member");  // ✓ Allowed
-```
-
-### Permission Management
-```typescript
-// Add/remove permissions dynamically
-permManager.addReadUser("new_user");
-permManager.removeWriteUser("old_admin");
-
-// Check permissions
-if (permManager.hasWriteAccess("user")) {
-    // User can write
-}
-
-// Display current permissions
-permManager.displayPermissions();
+proxy.read("alice");    // ✓ Allowed - has read permission
+proxy.read("admin");    // ✓ Allowed - write users can also read
+proxy.write("alice");   // ✗ Denied - only has read permission
+proxy.write("admin");   // ✓ Allowed - has write permission
+proxy.read("bob");      // ✗ Denied - no permission
 ```
 
 ## Permission Rules

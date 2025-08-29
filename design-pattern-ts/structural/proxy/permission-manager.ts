@@ -53,18 +53,4 @@ export class PermissionManager implements IUserPermissionManager {
         console.log('================================================\n');
     }
 
-    clearAllPermissions(): void {
-        this.readUsers.clear();
-        this.writeUsers.clear();
-        console.log(`All permissions cleared for document ${this.documentName}`);
-    }
-
-    hasAnyPermissions(userName: string): boolean {
-        return this.hasReadAccess(userName) || this.hasWriteAccess(userName);
-    }
-
-    getTotalUsersCount(): number {
-        const allUsers = new Set([...this.readUsers, ...this.writeUsers]);
-        return allUsers.size;
-    }
 }
