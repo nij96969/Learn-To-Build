@@ -38,7 +38,7 @@ export class AuthDecorator extends ApiDecorator {
             throw new Error("Unauthorized: Invalid token format");
         }
 
-        console.log(`🔐 [AUTH] Token validated for ${endpoint}: ${this.maskToken(this.token)}`);
+        console.log(`🔐 [AUTH] Token validated for ${endpoint}: ${this.token}`);
         
         // Add authorization header to the request data
         const enrichedData = {
@@ -59,15 +59,5 @@ export class AuthDecorator extends ApiDecorator {
     private isValidToken(token: string): boolean {
         // Simple validation: token should have minimum length and contain Bearer or valid format
         return token.length > 10 && (token.startsWith('Bearer ') || token.includes('key_'));
-    }
-
-    /**
-     * Masks the token for secure logging
-     * @param token The token to mask
-     * @returns Masked version of the token
-     */
-    private maskToken(token: string): string {
-        if (token.length <= 8) return '***';
-        return token.substring(0, 8) + '***' + token.substring(token.length - 4);
     }
 }
