@@ -1,7 +1,7 @@
 import { ICommand } from './interfaces/command';
 import { handleError } from '../../utils/handleError';
 
-class JobQueue {
+export class JobQueue {
     private job_queue: ICommand[] = [];
 
     enqueue(command: ICommand) {
@@ -33,5 +33,3 @@ class JobQueue {
         }
     }
 }
-
-export { JobQueue };

@@ -1,5 +1,5 @@
 import { PDFService } from './receivers/pdf-service';
-import { JobQueue } from './JobQueue';
+import { JobQueue } from './job-queue';
 import { ERWPDFCommand } from './commands/erw-pdf-command';
 import { SMBPDFCommand } from './commands/smb-pdf-command';
 import { CertificatePDFCommand } from './commands/certificate-pdf-command';
