@@ -20,7 +20,8 @@
     "chain-of-responsibility": "ts-node behavioural/chain-of-responsibility/chain-of-responsibility-main.ts",
     "state": "ts-node behavioural/state/state-main.ts",
     "mediator": "ts-node behavioural/mediator/mediator-main.ts",
-    "command": "ts-node behavioural/command/command-main.ts"
+    "command": "ts-node behavioural/command/command-main.ts",
+    "template": "ts-node behavioural/template/template-main.ts"
   },
   "keywords": [],
   "author": "",
