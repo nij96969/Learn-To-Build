@@ -21,7 +21,8 @@
     "state": "ts-node behavioural/state/state-main.ts",
     "mediator": "ts-node behavioural/mediator/mediator-main.ts",
     "command": "ts-node behavioural/command/command-main.ts",
-    "template": "ts-node behavioural/template/template-main.ts"
+    "template": "ts-node behavioural/template/template-main.ts",
+    "strategy": "ts-node behavioural/strategy/strategy-main.ts"
   },
   "keywords": [],
   "author": "",
