@@ -22,7 +22,8 @@
     "mediator": "ts-node behavioural/mediator/mediator-main.ts",
     "command": "ts-node behavioural/command/command-main.ts",
     "template": "ts-node behavioural/template/template-main.ts",
-    "strategy": "ts-node behavioural/strategy/strategy-main.ts"
+    "strategy": "ts-node behavioural/strategy/strategy-main.ts",
+    "visitor": "ts-node behavioural/visitor/visitor-main.ts"
   },
   "keywords": [],
   "author": "",
