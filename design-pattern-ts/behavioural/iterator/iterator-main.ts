@@ -11,23 +11,18 @@ function demonstrateIteratorPattern(){
     wordCollection.addWord('Are');
     wordCollection.addWord('Awesome');
 
-    // Forward iteration
     console.log('Forward iteration:');
     const wordIterator = wordCollection.createIterator();
-    let index = 1;
     while (wordIterator.hasNext()) {
         const word = wordIterator.next();
-        console.log(`  ${index}. ${word}`);
-        index++;
+        console.log(`-> ${word}`);
     }
 
     console.log('\nReverse iteration:');
     const reverseWordIterator = wordCollection.createReverseIterator();
-    index = 1;
     while (reverseWordIterator.hasNext()) {
         const word = reverseWordIterator.next();
-        console.log(`  ${index}. ${word}`);
-        index++;
+        console.log(`-> ${word}`);
     }
 
 
@@ -45,23 +40,19 @@ function demonstrateIteratorPattern(){
     // Forward iteration through books
     console.log('Forward iteration through books:');
     const bookIterator = bookCollection.createIterator();
-    index = 1;
     while (bookIterator.hasNext()) {
         const book = bookIterator.next();
         if (book) {
-            console.log(`  ${index}. "${book.title}" by ${book.author} (${book.year}) - ${book.genre}`);
-            index++;
+            console.log(`-> "${book.title}" by ${book.author} (${book.year}) - ${book.genre}`);
         }
     }
 
     console.log('\nReverse iteration through books:');
     const reverseBookIterator = bookCollection.createReverseIterator();
-    index = 1;
     while (reverseBookIterator.hasNext()) {
         const book = reverseBookIterator.next();
         if (book) {
-            console.log(`  ${index}. "${book.title}" by ${book.author} (${book.year}) - ${book.genre}`);
-            index++;
+            console.log(`-> "${book.title}" by ${book.author} (${book.year}) - ${book.genre}`);
         }
     }
 };
