@@ -24,7 +24,8 @@
     "template": "ts-node behavioural/template/template-main.ts",
     "strategy": "ts-node behavioural/strategy/strategy-main.ts",
     "visitor": "ts-node behavioural/visitor/visitor-main.ts",
-    "memento": "ts-node behavioural/memento/memento-main.ts"
+    "memento": "ts-node behavioural/memento/memento-main.ts",
+    "iterator": "ts-node behavioural/iterator/iterator-main.ts"
   },
   "keywords": [],
   "author": "",
